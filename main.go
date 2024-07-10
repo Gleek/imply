@@ -89,7 +89,7 @@ func main() {
 	}
 
 	// Generate the struct and methods
-	fmt.Printf("type %s struct{}\n\n", structName)
+	fmt.Printf("type %s struct{}", structName)
 
 	for _, method := range interfaceType.Methods.List {
 		funcType := method.Type.(*ast.FuncType)
@@ -98,9 +98,9 @@ func main() {
 		params := generateParams(funcType.Params)
 		returns := generateReturns(funcType.Results)
 
-		fmt.Printf("func (i *%s) %s(%s) %s {\n", structName, funcName, params, returns)
+		fmt.Printf("\n\nfunc (i *%s) %s(%s) %s {\n", structName, funcName, params, returns)
 		fmt.Print(generateReturnStatement(funcType.Results))
-		fmt.Print("}\n\n")
+		fmt.Print("}")
 	}
 
 }
